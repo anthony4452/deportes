@@ -10,6 +10,7 @@ class Deportista extends Model
 
     protected $fillable = [
         'nombre',
+        'apellido',
         'fecha_nacimiento',
         'estatura',
         'peso',

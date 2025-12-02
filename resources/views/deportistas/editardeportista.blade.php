@@ -17,6 +17,12 @@
               <input id="nombre" type="text" name="nombre" value="{{ old('nombre', $deportista->nombre) }}" class="form-control rounded @error('nombre') is-invalid @enderror" required>
               @error('nombre')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
+            
+          <div class="mb-3">
+            <label for="apellido" class="form-label"><b>Apellido completo:</b></label>
+            <input id="apellido" type="text" name="apellido" value="{{ old('apellido', $deportista->apellido) }}" class="form-control rounded @error('apellido') is-invalid @enderror" required>
+            @error('apellido')<div class="invalid-feedback">{{ $message }}</div>@enderror
+          </div>
 
             <div class="mb-3">
               <label for="fecha_nacimiento" class="form-label"><b>Fecha de Nacimiento:</b></label>

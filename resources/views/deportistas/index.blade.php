@@ -16,6 +16,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Apellido</th>
                     <th>Fecha Nacimiento</th>
                     <th>Estatura</th>
                     <th>Peso</th>
@@ -30,6 +31,7 @@
                 <tr>
                     <td>{{ $dep->id }}</td>
                     <td>{{ $dep->nombre }}</td>
+                    <td>{{ $dep->apellido }}</td>
                     <td>{{ $dep->fecha_nacimiento }}</td>
                     <td>{{ $dep->estatura }}</td>
                     <td>{{ $dep->peso }}</td>

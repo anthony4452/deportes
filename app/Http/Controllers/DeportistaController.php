@@ -27,6 +27,7 @@ class DeportistaController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|min:2|max:255',
+            'apellido' => 'required|string|min:2|max:255',
             'fecha_nacimiento' => 'required|date|before_or_equal:today',
             'estatura' => 'required|numeric',
             'peso' => 'required|numeric',
@@ -34,6 +35,7 @@ class DeportistaController extends Controller
             'disciplina_id' => 'required|exists:disciplinas,id',
         ], [
             'nombre.required' => 'Ingrese el nombre del deportista',
+            'apellido.required' => 'Ingrese el nombre del deportista',
             'fecha_nacimiento.required' => 'Ingrese la fecha de nacimiento',
             'fecha_nacimiento.before_or_equal' => 'La fecha de nacimiento no puede ser futura',
             'estatura.required' => 'Ingrese la estatura',
@@ -44,9 +46,9 @@ class DeportistaController extends Controller
             'disciplina_id.required' => 'Seleccione una disciplina',
         ]);
 
-        // Guardamos estatura/peso como string (tu migración) pero validamos como numeric
         Deportista::create([
             'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'estatura' => (string) $request->estatura,
             'peso' => (string) $request->peso,
@@ -69,6 +71,7 @@ class DeportistaController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|min:2|max:255',
+            'apellido' => 'required|string|min:2|max:255',
             'fecha_nacimiento' => 'required|date|before_or_equal:today',
             'estatura' => 'required|numeric',
             'peso' => 'required|numeric',
@@ -76,6 +79,7 @@ class DeportistaController extends Controller
             'disciplina_id' => 'required|exists:disciplinas,id',
         ], [
             'nombre.required' => 'Ingrese el nombre del deportista',
+            'apellido.required' => 'Ingrese el apellido del deportista',
             'fecha_nacimiento.required' => 'Ingrese la fecha de nacimiento',
             'fecha_nacimiento.before_or_equal' => 'La fecha de nacimiento no puede ser futura',
             'estatura.required' => 'Ingrese la estatura',
@@ -90,6 +94,7 @@ class DeportistaController extends Controller
 
         $deportista->update([
             'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'estatura' => (string) $request->estatura,
             'peso' => (string) $request->peso,

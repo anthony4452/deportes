@@ -2,7 +2,6 @@
 
 @section('contenido')
 
-<section class="ftco-section d-flex align-items-center justify-content-center" style="min-height: 100vh;">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8 col-lg-6 p-3 py-5">
@@ -33,7 +32,7 @@
       </div>
     </div>
   </div>
-</section>
+  
 @push('scripts')
 <script>
 $(document).ready(function () {
