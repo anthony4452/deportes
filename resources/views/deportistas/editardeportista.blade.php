@@ -8,45 +8,66 @@
         <div class="bg-light p-4 rounded shadow">
           <h2 class="mb-4 text-center text-dark">Editar Deportista</h2>
 
-          <form action="{{ route('deportistas.update', $deportista->id) }}" id="FormDeportistaEdit" class="validate-form" method="POST">
+          <form action="{{ route('deportistas.update', $deportista->id) }}" 
+                id="FormDeportistaEdit" class="validate-form" method="POST">
             @csrf
             @method('PUT')
 
             <div class="mb-3">
               <label for="nombre" class="form-label"><b>Nombre completo:</b></label>
-              <input id="nombre" type="text" name="nombre" value="{{ old('nombre', $deportista->nombre) }}" class="form-control rounded @error('nombre') is-invalid @enderror" required>
+              <input id="nombre" type="text" name="nombre"
+                     value="{{ old('nombre', $deportista->nombre) }}"
+                     class="form-control rounded @error('nombre') is-invalid @enderror"
+                     required>
               @error('nombre')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
-            
-          <div class="mb-3">
-            <label for="apellido" class="form-label"><b>Apellido completo:</b></label>
-            <input id="apellido" type="text" name="apellido" value="{{ old('apellido', $deportista->apellido) }}" class="form-control rounded @error('apellido') is-invalid @enderror" required>
-            @error('apellido')<div class="invalid-feedback">{{ $message }}</div>@enderror
-          </div>
+
+            <div class="mb-3">
+              <label for="apellido" class="form-label"><b>Apellido completo:</b></label>
+              <input id="apellido" type="text" name="apellido"
+                     value="{{ old('apellido', $deportista->apellido) }}"
+                     class="form-control rounded @error('apellido') is-invalid @enderror"
+                     required>
+              @error('apellido')<div class="invalid-feedback">{{ $message }}</div>@enderror
+            </div>
 
             <div class="mb-3">
               <label for="fecha_nacimiento" class="form-label"><b>Fecha de Nacimiento:</b></label>
-              <input id="fecha_nacimiento" type="date" name="fecha_nacimiento" value="{{ old('fecha_nacimiento', $deportista->fecha_nacimiento) }}" class="form-control rounded @error('fecha_nacimiento') is-invalid @enderror" required>
+              <input id="fecha_nacimiento" type="date" name="fecha_nacimiento"
+                     value="{{ old('fecha_nacimiento', $deportista->fecha_nacimiento) }}"
+                     class="form-control rounded @error('fecha_nacimiento') is-invalid @enderror"
+                     required
+                     max="{{ \Carbon\Carbon::now()->subYears(18)->format('Y-m-d') }}">
               @error('fecha_nacimiento')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
 
             <div class="mb-3">
               <label for="estatura" class="form-label"><b>Estatura (m):</b></label>
-              <input id="estatura" type="number" step="0.01" name="estatura" value="{{ old('estatura', $deportista->estatura) }}" class="form-control rounded @error('estatura') is-invalid @enderror" required>
+              <input id="estatura" type="number" step="0.01" name="estatura"
+                     value="{{ old('estatura', $deportista->estatura) }}"
+                     class="form-control rounded @error('estatura') is-invalid @enderror"
+                     required>
               @error('estatura')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
 
             <div class="mb-3">
               <label for="peso" class="form-label"><b>Peso (kg):</b></label>
-              <input id="peso" type="number" step="0.01" name="peso" value="{{ old('peso', $deportista->peso) }}" class="form-control rounded @error('peso') is-invalid @enderror" required>
+              <input id="peso" type="number" step="0.01" name="peso"
+                     value="{{ old('peso', $deportista->peso) }}"
+                     class="form-control rounded @error('peso') is-invalid @enderror"
+                     required>
               @error('peso')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
 
             <div class="mb-3">
               <label for="pais_id" class="form-label"><b>País:</b></label>
-              <select id="pais_id" name="pais_id" class="form-select rounded @error('pais_id') is-invalid @enderror" required>
+              <select id="pais_id" name="pais_id"
+                      class="form-select rounded @error('pais_id') is-invalid @enderror" required>
                 @foreach($paises as $pais)
-                  <option value="{{ $pais->id }}" {{ (old('pais_id', $deportista->pais_id) == $pais->id) ? 'selected' : '' }}>{{ $pais->pais }}</option>
+                  <option value="{{ $pais->id }}"
+                    {{ (old('pais_id', $deportista->pais_id) == $pais->id) ? 'selected' : '' }}>
+                    {{ $pais->pais }}
+                  </option>
                 @endforeach
               </select>
               @error('pais_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -54,9 +75,13 @@
 
             <div class="mb-3">
               <label for="disciplina_id" class="form-label"><b>Disciplina:</b></label>
-              <select id="disciplina_id" name="disciplina_id" class="form-select rounded @error('disciplina_id') is-invalid @enderror" required>
+              <select id="disciplina_id" name="disciplina_id"
+                      class="form-select rounded @error('disciplina_id') is-invalid @enderror" required>
                 @foreach($disciplinas as $disc)
-                  <option value="{{ $disc->id }}" {{ (old('disciplina_id', $deportista->disciplina_id) == $disc->id) ? 'selected' : '' }}>{{ $disc->disciplina }}</option>
+                  <option value="{{ $disc->id }}"
+                    {{ (old('disciplina_id', $deportista->disciplina_id) == $disc->id) ? 'selected' : '' }}>
+                    {{ $disc->disciplina }}
+                  </option>
                 @endforeach
               </select>
               @error('disciplina_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
@@ -70,6 +95,7 @@
                 <i class="fa fa-save"></i> Actualizar Deportista
               </button>
             </div>
+
           </form>
 
         </div>
@@ -81,37 +107,37 @@
 @push('scripts')
 <script>
 $(document).ready(function () {
-  $.validator.addMethod("noFuturo", function (value, element) {
-    if (!value) return false;
-    const fecha = new Date(value);
-    const hoy = new Date();
-    fecha.setHours(0,0,0,0);
-    hoy.setHours(0,0,0,0);
-    return fecha <= hoy;
-  }, "La fecha no puede ser futura.");
 
-  $.validator.setDefaults({ ignore: [] });
-
-  // Inicializar validación para el formulario de edición
   $("#FormDeportistaEdit").validate({
     rules: {
       nombre: { required: true, minlength: 2, maxlength: 255 },
-      fecha_nacimiento: { required: true, date: true, noFuturo: true },
+      apellido: { required: true, minlength: 2, maxlength: 255 },
+      fecha_nacimiento: { 
+        required: true, 
+        date: true,
+        max: "{{ \Carbon\Carbon::now()->subYears(18)->format('Y-m-d') }}"
+      },
       estatura: { required: true, number: true },
       peso: { required: true, number: true },
       pais_id: { required: true },
       disciplina_id: { required: true }
     },
+
     messages: {
       nombre: {
         required: "Ingrese el nombre del deportista",
         minlength: "Debe tener al menos 2 caracteres",
         maxlength: "Máximo 255 caracteres"
       },
+      apellido: {
+        required: "Ingrese el apellido del deportista",
+        minlength: "Debe tener al menos 2 caracteres",
+        maxlength: "Máximo 255 caracteres"
+      },
       fecha_nacimiento: {
         required: "Ingrese la fecha de nacimiento",
         date: "Ingrese una fecha válida",
-        noFuturo: "La fecha no puede ser futura"
+        max: "El deportista debe ser mayor de 18 años"
       },
       estatura: {
         required: "Ingrese la estatura",
@@ -125,6 +151,7 @@ $(document).ready(function () {
       disciplina_id: { required: "Seleccione una disciplina" }
     }
   });
+
 });
 </script>
 @endpush
