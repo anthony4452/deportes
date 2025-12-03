@@ -6,6 +6,9 @@ use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\PaisController;
 use App\Http\Controllers\LoginController;
 
+
+
+
 Route::get('/', [LoginController::class, 'showLoginForm']);
 
 Route::resource('deportistas', DeportistaController::class);

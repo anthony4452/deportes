@@ -50,7 +50,9 @@
     <h2>Iniciar Sesión</h2>
     <input type="text" placeholder="Usuario">
     <input type="password" placeholder="Contraseña">
-    <button>Entrar</button>
+    <a href="{{ route('deportistas.index') }}">
+        <button type="button">Entrar</button>
+    </a>
 </div>
 
 </body>
