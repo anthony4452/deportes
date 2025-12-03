@@ -7,6 +7,7 @@ use App\Http\Controllers\PaisController;
 use App\Http\Controllers\LoginController;
 
 Route::get('/', [LoginController::class, 'showLoginForm']);
+Route::get('register', [LoginController::class, 'showRegForm']);
 
 Route::resource('deportistas', DeportistaController::class);
 Route::resource('disciplinas', DisciplinaController::class);

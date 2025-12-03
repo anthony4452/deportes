@@ -72,6 +72,8 @@
             <li><a href="{{ route('deportistas.index') }}" class="active">Athletes</a></li>
             <li><a href="{{ route ('paises.index') }}">Country</a></li>
             <li><a href="{{ route('disciplinas.index') }}">Discipline</a></li>
+            <a href="/" class="">
+              <i class="bi bi-logout"></i><span>Cerrar Sesion</span>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>

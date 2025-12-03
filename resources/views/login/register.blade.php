@@ -2,9 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Registro</title>
     <style>
-        /* --- FONDO ULTRA PROFESIONAL / ESTILO APPLE-GRADIENT LIQUID --- */
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
@@ -16,16 +15,16 @@
             background: #0d0d0d;
         }
 
-        /* Burbujas líquidas animadas premium */
+        /* Fondo líquido animado estilo Apple */
         .liquid-bg {
             position: absolute;
             width: 120vw;
             height: 120vh;
             top: -10vh;
             left: -10vw;
-            background: radial-gradient(circle at 30% 30%, #7f5fff 0%, transparent 60%),
-                        radial-gradient(circle at 70% 40%, #00eaff 0%, transparent 60%),
-                        radial-gradient(circle at 50% 80%, #ff00c8 0%, transparent 60%);
+            background: radial-gradient(circle at 20% 20%, #5a1f80 0%, transparent 60%)),
+                        radial-gradient(circle at 80% 30%, #003a4d 0%, transparent 60%)),
+                        radial-gradient(circle at 50% 80%, #1e0a5c 0%, transparent 60%));
             filter: blur(90px);
             animation: float 16s infinite ease-in-out alternate;
             z-index: -2;
@@ -37,7 +36,6 @@
             100% { transform: translate(-5%, 10%) scale(1.1); }
         }
 
-        /* Sutil capa de brillo */
         .glow-layer {
             position: absolute;
             width: 100%;
@@ -47,18 +45,17 @@
             z-index: -1;
         }
 
-        /* --- LOGIN BOX --- */
-        .login-box {
+        .register-box {
             backdrop-filter: blur(30px);
-            background: rgba(255, 255, 255, 0.13);
+            background: rgba(255, 255, 255, 0.12);
             padding: 40px;
-            width: 350px;
+            width: 380px;
             border-radius: 20px;
-            box-shadow: 0 0 40px rgba(0,0,0,0.4);
             text-align: center;
-            color: white;
+            color: #fff;
             animation: fadeIn 1s ease-out;
             border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 0 35px rgba(0,0,0,0.4);
         }
 
         @keyframes fadeIn {
@@ -66,95 +63,75 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .login-box h2 {
+        .register-box h2 {
             margin-bottom: 25px;
             font-size: 28px;
             font-weight: 600;
         }
 
-        .login-box input {
+        .register-box input {
             width: 100%;
             padding: 14px;
             margin: 12px 0;
             border-radius: 12px;
             border: none;
             outline: none;
-            font-size: 15px;
             background: rgba(255,255,255,0.2);
             color: #fff;
+            font-size: 15px;
         }
 
-        .login-box button {
+        .register-box button {
             width: 100%;
             padding: 14px;
             margin-top: 15px;
-            background: linear-gradient(135deg, #7f5fff, #00eaff);
-            color: white;
+            background: linear-gradient(135deg, #ff005c, #7f00ff);
             border: none;
             border-radius: 12px;
             cursor: pointer;
+            color: #fff;
             font-size: 16px;
             font-weight: bold;
             transition: 0.3s;
         }
 
-        .login-box button:hover {
+        .register-box button:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0,234,255,0.6);
-        }
-
-        .error {
-            margin-top: 15px;
-            background: rgba(255, 0, 0, 0.55);
-            padding: 10px;
-            border-radius: 10px;
-            display: none;
-            color: #fff;
-        }
-
-        .extra-links {
-            margin-top: 18px;
+            box-shadow: 0 0 20px rgba(255,107,203,0.6);
         }
 
         .extra-links a {
+            display: block;
+            margin-top: 18px;
             color: #aee0ff;
             text-decoration: none;
             font-size: 14px;
         }
+
         .extra-links a:hover { text-decoration: underline; }
-</style>
+
+    </style>
 </head>
 <body>
-<div class="animated-bg"></div>
 
-<div class="login-box">
-    <h2>Iniciar Sesión</h2>
+<div class="liquid-bg"></div>
+<div class="glow-layer"></div>
 
-    <input id="user" type="text" placeholder="Usuario">
-    <input id="pass" type="password" placeholder="Contraseña">
+<div class="register-box">
+    <h2>Crear Cuenta</h2>
 
-    <button onclick="login()">Entrar</button>
+    <input type="text" placeholder="Nombre completo">
+    <input type="text" placeholder="Usuario">
+    <input type="email" placeholder="Correo electrónico">
+    <input type="password" placeholder="Contraseña">
+    <input type="password" placeholder="Confirmar contraseña">
 
-    <div id="errorBox" class="error">Usuario o contraseña incorrectos</div>
+    <a href="/" style="text-decoration:none;"><button style="width:100%;padding:14px;margin-top:15px;background:linear-gradient(135deg,#ff005c,#7f00ff);border:none;border-radius:12px;cursor:pointer;color:#fff;font-size:16px;font-weight:bold;transition:0.3s;">Registrarse</button></a>
 
     <div class="extra-links">
-        <a href="register">¿No tienes cuenta? Regístrate</a>
+        <a href="/login">¿Ya tienes cuenta? Inicia sesión</a>
     </div>
 </div>
-
-<script>
-function login() {
-    const user = document.getElementById('user').value;
-    const pass = document.getElementById('pass').value;
-    const errorBox = document.getElementById('errorBox');
-
-    if (user === 'anthoo' && pass === '1234') {
-        window.location.href = "{{ route('deportistas.index') }}";
-    } else {
-        errorBox.style.display = 'block';
-    }
-}
-</script>
 
 </body>
 </html>
